@@ -1,24 +1,47 @@
-import React from 'react'
-import { View, Text } from 'react-native'
+import React, { useState, useEffect } from "react";
+import { Formik } from "formik";
+import {View} from 'react-native';
 
-import {Container, Input, Button, ButtonText} from '../../style/style';
-import { Ionicons } from '@expo/vector-icons';
+import { Container, Input, Button, ButtonText } from "../../style/style";
+import { Ionicons } from "@expo/vector-icons";
 
-export default function Login() {
+
+
+export default function Login({navigation}) {
+  const [user, setUser] = useState("");
+
+  HandleSubmitUser = (values) => {
+    console.log(values.user);
+    navigation.navigate('Home', {user: values.user})
+  }
+
   return (
-    <Container>
-      
-      <Ionicons name="logo-github" size={88} color="#FFD700" style={{marginBottom: 30}}/>
-      <Input
-        placeholder='Usuário'
-      />
-      <Button>
-        <ButtonText>
-          Entrar
-        </ButtonText>
-      </Button>
-     
-      
-    </Container>
-  )
+    
+      <Formik
+        initialValues={{
+          user: ''
+        }}
+        onSubmit={(values) => HandleSubmitUser(values)}
+      >
+        {({values, handleChange, handleSubmit}) => (
+          <Container>
+          <Ionicons
+            name="logo-github"
+            size={88}
+            color="#FFD700"
+            style={{ marginBottom: 30 }}
+          />
+            <Input 
+            placeholder="Usuário" 
+            value={values.user}
+            onChangeText={handleChange('user')}
+            />
+            <Button onPress={() => handleSubmit()}>
+              <ButtonText>Entrar</ButtonText>
+            </Button>
+            </Container>
+        )}
+      </Formik>
+    
+  );
 }
