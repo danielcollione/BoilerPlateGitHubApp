@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Image, View, Text } from "react-native";
-import { EvilIcons, FontAwesome } from "@expo/vector-icons";
+import { EvilIcons, FontAwesome, SimpleLineIcons } from "@expo/vector-icons";
 
 import {
   Container,
@@ -21,9 +21,9 @@ export default function Home({ route, navigation }) {
   const [following, setFollowing] = useState("");
   const [repos, setRepos] = useState("");
   const [avatar, setAvatar] = useState("");
-  const [bio, setBio] = useState('');
-  const [company, setCompany] = useState('');
-  const [location, setLocation] = useState('');
+  const [bio, setBio] = useState("");
+  const [company, setCompany] = useState("");
+  const [location, setLocation] = useState("");
   const [userInput, setUserInput] = useState("");
   const [error, setError] = useState(null);
 
@@ -57,59 +57,61 @@ export default function Home({ route, navigation }) {
 
   return (
     <>
-      <Header>
+      <Header style={{ flexDirection: "row", justifyContent: "space-between" }}>
         <UserName>#{user}</UserName>
+        <SimpleLineIcons
+          name="logout"
+          size={24}
+          color="red"
+          style={{ marginTop: 30, marginRight: 15 }}
+        />
       </Header>
       <Container>
-        
-
-        
         <View>
           <Image
             style={{
-              width: 200,
-              height: 200,
+              width: 100,
+              height: 100,
               borderBottomLeftRadius: 100,
               borderBottomRightRadius: 100,
               borderTopRightRadius: 100,
               borderTopLeftRadius: 100,
               overflow: "hidden",
-              marginTop: 30,
             }}
             source={{
               uri: avatar,
             }}
           />
         </View>
-        <View style={{
-          flexDirection: "row",
-          justifyContent: "space-between",
-          marginTop: 30,
-        }}>
-        <EvilIcons
-            name="location"
-            size={25}
-            color='white'
-          />
-        <Text style={{marginTop: 2, fontSize: 15, color: 'white'}}>{location}</Text>
+        <View
+          style={{
+            flexDirection: "row",
+            justifyContent: "space-between",
+            marginTop: 30,
+          }}
+        >
+          <EvilIcons name="location" size={25} color="white" />
+          <Text style={{ marginTop: 2, fontSize: 15, color: "white" }}>
+            {location}
+          </Text>
         </View>
 
-        <View style={{
-          marginTop: 10,
-          flexDirection: "row",
-          justifyContent: "space-between",
-        }}>
-        <FontAwesome
+        <View
+          style={{
+            marginTop: 10,
+            flexDirection: "row",
+            justifyContent: "space-between",
+          }}
+        >
+          <FontAwesome
             name="industry"
             size={15}
-            color='white'
-            style={{marginRight: 5}}
+            color="white"
+            style={{ marginRight: 5 }}
           />
-        <Text style={{fontSize: 15, color: 'white'}}>{company}</Text>
+          <Text style={{ fontSize: 15, color: "white" }}>{company}</Text>
         </View>
-        
-        
-        
+
         <View
           style={{
             flexDirection: "row",
@@ -120,7 +122,6 @@ export default function Home({ route, navigation }) {
             marginTop: 30,
           }}
         >
-          
           <View>
             <UserInfo style={{}}>{followers}</UserInfo>
             <Text style={{ fontSize: 15, color: "white", fontWeight: "bold" }}>
@@ -140,13 +141,10 @@ export default function Home({ route, navigation }) {
             </Text>
           </View>
         </View>
-        <View style={{marginTop: 30}}>
-          <UserInfo style={{color: '#FFD700'}}>BIO</UserInfo>
-          <Text style={{color: 'white'}}>
-            {bio}
-          </Text>
+        <View style={{ marginTop: 30 }}>
+          <UserInfo style={{ color: "#FFD700" }}>BIO</UserInfo>
+          <Text style={{ color: "white" }}>{bio}</Text>
         </View>
-        
       </Container>
     </>
   );
