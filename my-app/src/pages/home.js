@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Image, View, Text } from "react-native";
+import { Image, View, Text, TouchableHighlight } from "react-native";
 import { EvilIcons, FontAwesome, SimpleLineIcons } from "@expo/vector-icons";
 
 import {
@@ -26,6 +26,10 @@ export default function Home({ route, navigation }) {
   const [location, setLocation] = useState("");
   const [userInput, setUserInput] = useState("");
   const [error, setError] = useState(null);
+
+  const Logout = () => {
+    navigation.navigate('Login');
+  }
 
   useEffect(() => {
     fetch(`https://api.github.com/users/${user}`)
@@ -59,19 +63,22 @@ export default function Home({ route, navigation }) {
     <>
       <Header style={{ flexDirection: "row", justifyContent: "space-between" }}>
         <UserName>#{user}</UserName>
+        <TouchableHighlight onPress={() => Logout()}>
         <SimpleLineIcons
           name="logout"
           size={24}
           color="red"
           style={{ marginTop: 30, marginRight: 15 }}
         />
+        </TouchableHighlight>
+        
       </Header>
       <Container>
         <View>
           <Image
             style={{
-              width: 100,
-              height: 100,
+              width: 150,
+              height: 150,
               borderBottomLeftRadius: 100,
               borderBottomRightRadius: 100,
               borderTopRightRadius: 100,
@@ -124,21 +131,29 @@ export default function Home({ route, navigation }) {
         >
           <View>
             <UserInfo style={{}}>{followers}</UserInfo>
+            <TouchableHighlight>
+
+            
             <Text style={{ fontSize: 15, color: "white", fontWeight: "bold" }}>
               Seguidores
             </Text>
+            </TouchableHighlight>
           </View>
           <View>
             <UserInfo style={{}}>{following}</UserInfo>
+            <TouchableHighlight>
             <Text style={{ fontSize: 15, color: "white", fontWeight: "bold" }}>
               Seguindo
             </Text>
+            </TouchableHighlight>
           </View>
           <View>
             <UserInfo style={{}}>{repos}</UserInfo>
+            <TouchableHighlight>
             <Text style={{ fontSize: 15, color: "white", fontWeight: "bold" }}>
               Seguidores
             </Text>
+            </TouchableHighlight>
           </View>
         </View>
         <View style={{ marginTop: 30 }}>
