@@ -21,6 +21,26 @@ const Input = styled.TextInput.attrs({
   width: 75%;
 `;
 
+const UserName = styled.Text`
+marginTop: 30px;
+marginLeft: 15px;
+  color: #FFD700;
+  fontWeight: bold;
+  fontSize: 16px;
+`
+
+const UserInfo = styled.Text`
+  color: white;
+  fontWeight: bold;
+  fontSize: 30px;
+`
+
+const Header = styled.View`
+  
+  height: 70px;
+  backgroundColor: black;
+`
+
 const Container = styled.View`
   flex: 1;
   alignItems: center;
@@ -49,4 +69,4 @@ const ButtonText = styled.Text`
   textAlign: center;
 `;
 
-export { Container, Input, Button, ButtonText }
+export { Container, Input, Button, ButtonText, Header, UserName, UserInfo }
