@@ -35,6 +35,14 @@ export default function Home({ route, navigation }) {
     navigation.navigate('Repos', {user: userName})
   }
 
+  const goToFollowers = (userName) => {
+    navigation.navigate('Followers', {user: userName})
+  }
+
+  const goToFollowing = (userName) => {
+    navigation.navigate('Following', {user: userName})
+  }
+
   useEffect(() => {
     fetch(`https://api.github.com/users/${user}`)
       .then((res) => res.json())
@@ -135,8 +143,10 @@ export default function Home({ route, navigation }) {
         >
           <View>
             <UserInfo style={{}}>{followers}</UserInfo>
-            <TouchableHighlight>
-
+            <TouchableHighlight
+              onPress={() => goToFollowers(userName)}
+            >
+            
             
             <Text style={{ fontSize: 15, color: "white", fontWeight: "bold" }}>
               Seguidores
@@ -145,7 +155,9 @@ export default function Home({ route, navigation }) {
           </View>
           <View>
             <UserInfo style={{}}>{following}</UserInfo>
-            <TouchableHighlight>
+            <TouchableHighlight
+              onPress={() => goToFollowing(userName)}
+            >
             <Text style={{ fontSize: 15, color: "white", fontWeight: "bold" }}>
               Seguindo
             </Text>
