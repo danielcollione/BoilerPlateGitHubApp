@@ -16,7 +16,7 @@ export default function Home({ route, navigation }) {
   const user = route.params.user;
   console.log(user);
 
-  const [userName, setUsername] = useState("");
+  const [userName, setUserName] = useState("");
   const [followers, setFollowers] = useState("");
   const [following, setFollowing] = useState("");
   const [repos, setRepos] = useState("");
@@ -29,6 +29,10 @@ export default function Home({ route, navigation }) {
 
   const Logout = () => {
     navigation.navigate('Login');
+  }
+
+  const goToRepos = (userName) => {
+    navigation.navigate('Repos', {user: userName})
   }
 
   useEffect(() => {
@@ -49,7 +53,7 @@ export default function Home({ route, navigation }) {
     company,
     location,
   }) => {
-    setUsername(login);
+    setUserName(login);
     setFollowers(followers);
     setFollowing(following);
     setRepos(public_repos);
@@ -62,7 +66,7 @@ export default function Home({ route, navigation }) {
   return (
     <>
       <Header style={{ flexDirection: "row", justifyContent: "space-between" }}>
-        <UserName>#{user}</UserName>
+        <UserName style={{paddingTop: 8}}>#{user}</UserName>
         <TouchableHighlight onPress={() => Logout()}>
         <SimpleLineIcons
           name="logout"
@@ -149,9 +153,9 @@ export default function Home({ route, navigation }) {
           </View>
           <View>
             <UserInfo style={{}}>{repos}</UserInfo>
-            <TouchableHighlight>
+            <TouchableHighlight onPress={() => goToRepos(userName)}>
             <Text style={{ fontSize: 15, color: "white", fontWeight: "bold" }}>
-              Seguidores
+              Repositórios
             </Text>
             </TouchableHighlight>
           </View>
